@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:sofa="http://sofastack.io/schema/sofaboot"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://sofastack.io/schema/sofaboot http://sofastack.io/schema/sofaboot.xsd"
+       default-autowire="byName">
+
+    <bean id="billExternalFacade" class="com.bill.facadeImpl.BillExternalFacadeImpl"></bean>
+
+    <sofa:service interface="com.bill.common.facade.BillExternalFacade" ref="billExternalFacade">
+        <sofa:binding.jvm/>
+    </sofa:service>
+
+    <bean id="billInternalFacade" class="com.bill.facadeImpl.BillInternalFacadeImpl"></bean>
+
+    <sofa:service interface="com.bill.common.facade.BillInternalFacade" ref="billInternalFacade">
+        <sofa:binding.jvm/>
+    </sofa:service>
+
+    <sofa:service interface="com.bill.common.facade.StudentInternalFacade" ref="studentInternalFacade">
+        <sofa:binding.jvm/>
+    </sofa:service>
+</beans>

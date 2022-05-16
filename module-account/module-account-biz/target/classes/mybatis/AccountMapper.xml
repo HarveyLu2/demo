@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.account.common.dal.mapper.AccountMapper">
+    <resultMap type="com.account.common.dal.dao.Account" id="BaseResultMap">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <id column="name" jdbcType="VARCHAR" property="name"/>
+        <id column="age" jdbcType="INTEGER" property="age"/>
+        <id column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
+        <id column="gmt_update" jdbcType="TIMESTAMP" property="gmtUpdate"/>
+    </resultMap>
+
+    <!--id与对应中的Mapper接口文件中的方法名相同-->
+    <select id="selectById" resultMap="BaseResultMap">
+        select * from account where id = #{id}
+    </select>
+
+</mapper>

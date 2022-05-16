@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:sofa="http://sofastack.io/schema/sofaboot"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://sofastack.io/schema/sofaboot http://sofastack.io/schema/sofaboot.xsd"
+       default-autowire="byName">
+
+    <bean id="accountExternalFacade" class="com.account.facadeImpl.AccountExternalFacadeImpl"></bean>
+    <sofa:service interface="com.account.common.facade.AccountExternalFacade" ref="accountExternalFacade">
+        <sofa:binding.jvm/>
+    </sofa:service>
+
+    <!--    注册中心服务-->
+    <bean id="accountInternalFacade" class="com.account.facadeImpl.AccountInternalFacadeImpl"></bean>
+    <sofa:service interface="com.account.common.facade.AccountInternalFacade" ref="accountInternalFacade">
+        <sofa:binding.jvm/>
+    </sofa:service>
+
+    <bean id="rbacAccountInternalFacade" class="com.account.facadeImpl.RbacAccountInternalFacadeImpl"></bean>
+    <sofa:service interface="com.account.common.facade.RbacAccountInternalFacade" ref="rbacAccountInternalFacade">
+        <sofa:binding.jvm/>
+    </sofa:service>
+</beans>

@@ -1,0 +1,10 @@
+2022-05-07 17:40:36.870 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.1.7.Final
+2022-05-07 17:40:37.027 [main] INFO  com.stori.sofa.mapper.BillMapperTest - Starting BillMapperTest using Java 1.8.0_321 on storis-MacBook-Pro.local with PID 31041 (started by stori in /Users/stori/Documents/project/stori-demo/web)
+2022-05-07 17:40:37.028 [main] INFO  com.stori.sofa.mapper.BillMapperTest - The following profiles are active: account-biz-dev,bill-biz-dev
+2022-05-07 17:40:39.367 [main] INFO  o.s.c.annotation.ConfigurationClassPostProcessor - Cannot enhance @Configuration bean definition 'accountMybatisConfig' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+2022-05-07 17:40:39.369 [main] INFO  o.s.c.annotation.ConfigurationClassPostProcessor - Cannot enhance @Configuration bean definition 'billMybatisConfig' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+2022-05-07 17:40:42.881 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 16 endpoint(s) beneath base path '/actuator'
+2022-05-07 17:40:43.027 [main] INFO  com.stori.sofa.mapper.BillMapperTest - Started BillMapperTest in 6.925 seconds (JVM running for 8.543)
+2022-05-07 17:40:43.135 [main] INFO  o.s.b.test.mock.web.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2022-05-07 17:40:43.136 [main] INFO  o.s.test.web.servlet.TestDispatcherServlet - Initializing Servlet ''
+2022-05-07 17:40:43.137 [main] INFO  o.s.test.web.servlet.TestDispatcherServlet - Completed initialization in 1 ms

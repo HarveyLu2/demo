@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>register</title>
+    <style>
+        label{
+            width:150px;
+            display:inline-block;
+            text-align:right;
+            padding_right:5px;
+
+        }
+    </style>
+</head>
+<body>
+    <h2>Please Sign up</h2>
+
+    <form action="/toRegister" method = post>
+        <label>Account Name:</label>
+        <input type="text" placeholder="Account Name" name = 'name'><br><br>
+        <label>Password:</label>
+        <input type="text" placeholder="Password" name = 'password'><br><br>
+        <label>Age:</label>
+        <input type="text" placeholder="Age" name = "age"><br><br>
+        <label>Role:</label>
+<!--        <input type="text" placeholder="Role Name" name = "roleName"><br><br>-->
+        <select type="" name="roleName">
+                <option>default</option>
+                <option>user</option>
+                <option>admin</option>
+        </select><br><br>
+
+      <input type ="submit" value = "Sign up">
+    </form>
+</body>
+</html>

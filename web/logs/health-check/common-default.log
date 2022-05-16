@@ -1,0 +1,20 @@
+2022-05-07 17:40:42,001 INFO  main                             - Create health-check thread pool, corePoolSize: 1, maxPoolSize: 1.
+2022-05-07 17:40:43,000 INFO  main                             - Found 1 HealthChecker implementation:sofaComponentHealthChecker
+2022-05-07 17:40:43,003 INFO  main                             - Found 2 HealthIndicator implementation:diskSpaceHealthIndicator,pingHealthContributor
+2022-05-07 17:40:43,004 INFO  main                             - Found 0 ReadinessCheckCallback implementation: 
+2022-05-07 17:40:43,007 INFO  main                             - Begin SOFABoot HealthChecker readiness check.
+2022-05-07 17:40:43,008 INFO  main                             - SOFABoot HealthChecker readiness check 1 item: SOFABoot-Components.
+2022-05-07 17:40:43,008 INFO  main                             - HealthChecker[sofaComponentHealthChecker] readiness check start.
+2022-05-07 17:40:43,012 INFO  main                             - HealthChecker[sofaComponentHealthChecker] readiness check success with 0 retry.
+2022-05-07 17:40:43,013 INFO  main                             - SOFABoot HealthChecker readiness check result: success.
+2022-05-07 17:40:43,015 INFO  main                             - Begin SOFABoot HealthIndicator readiness check.
+2022-05-07 17:40:43,015 INFO  main                             - SOFABoot HealthChecker readiness check 2 item: diskSpaceHealthIndicator,pingHealthContributor.
+2022-05-07 17:40:43,015 INFO  main                             - HealthIndicator[diskSpaceHealthIndicator] readiness check start.
+2022-05-07 17:40:43,017 INFO  main                             - HealthIndicator[diskSpaceHealthIndicator] readiness check success.
+2022-05-07 17:40:43,019 INFO  main                             - HealthIndicator[pingHealthContributor] readiness check start.
+2022-05-07 17:40:43,020 INFO  main                             - HealthIndicator[pingHealthContributor] readiness check success.
+2022-05-07 17:40:43,020 INFO  main                             - SOFABoot HealthIndicator readiness check result: success.
+2022-05-07 17:40:43,021 INFO  main                             - Invoking all readiness check callbacks...
+2022-05-07 17:40:43,021 INFO  main                             - Begin ReadinessCheckCallback readiness check
+2022-05-07 17:40:43,021 INFO  main                             - ReadinessCheckCallback readiness check result: success.
+2022-05-07 17:40:43,021 INFO  main                             - Readiness check result: success
