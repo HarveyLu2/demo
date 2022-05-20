@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Role index</title>
+</head>
+<body>
+<form action="/role/queryUserAll" method = post>
+    <button type ="submit">Query all roles</button>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+        </tr>
+        <tr th:each="rbacUser:${session.userList}">
+            <td th:text="${rbacUser.userId}"></td>
+            <td th:text="${rbacUser.userName}"></td>
+        </tr>
+        <br><br>
+    </table>
+</form>
+
+<h2>Check Role</h2>
+<form action="/role/queryRole" method="post">
+    <label>Check ID:</label>
+    <input type="text" placeholder="User ID" name = 'userId'><br>
+    <input type="submit" value="check">
+    <li th:each="role:*{session.roles}">
+        <input
+                type="checkbox"
+                name="role"
+                th:value="${role.roleId}"
+                th:text="${role.roleName}"
+                th:checked="${session.userRole.contains(role.roleId)}"
+        />
+    </li>
+</form>
+<br><br>
+
+<h2>Assign Role</h2>
+<form action="/role/addUserRole" method="post">
+    <label>Assign User ID:</label>
+    <input type="text" placeholder="User ID" name = 'userId'><br>
+    <label>Role:</label>
+    <input type="text" placeholder="角色名之间用分号;分隔" name="assignRole"><br>
+    <input type="submit" value="Assign"><br>
+    <span th:text="${session.addUserRoleMsg}"></span>
+</form>
+<br><br>
+
+<h2>Add New Role</h2>
+<form action="/role/addRole" method="post">
+    <label>Role ID:</label>
+    <input type="text" placeholder="Role ID" name = 'roleId'><br>
+    <label>Role Name:</label>
+    <input type="text" placeholder="Role Name" name = 'roleName'><br>
+    <input type="submit" value="Add">
+    <span th:text="${session.addRoleMsg}"></span>
+</form>
+<br><br><br><br>
+
+<form action="/main" method = post>
+    <button type ="submit">Return main</button>
+</form>
+
+
+
+
+</body>
+</html>

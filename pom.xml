@@ -98,10 +98,6 @@
         <module>web</module>
         <module>common</module>
         <module>module-account</module>
-        <module>module-account/module-account-common</module>
-        <module>module-account/module-account-biz</module>
         <module>module-bill</module>
-        <module>module-bill/module-bill-common</module>
-        <module>module-bill/module-bill-biz</module>
     </modules>
 </project>

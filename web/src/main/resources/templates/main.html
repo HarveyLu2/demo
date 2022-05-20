@@ -1,12 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>main</title>
 </head>
 <body>
-    <h1>You don't have permission</h1>
-    <a href="login">Sign in</a><br>
-    <a href="register">Sign up</a>
+    <h2>This is a main page</h2>
+    <label>welcome, </label>
+    <span th:text="${session.loginUser}">user name</span><br><br>
+    <span th:text="${session.msg}">msg</span><br><br>
+    <a th:href="@{user/index}" th:style="'display:' + @{(${session.permissionList.contains('user')}? 'inline-block' : 'none')}">User Manage</a><br>
+    <a th:href="@{role/index}" th:style="'display:' + @{(${session.permissionList.contains('role')}? 'inline-block' : 'none')}">Role Manage</a><br>
+    <a th:href="@{permission/index}" th:style="'display:' + @{(${session.permissionList.contains('permission')}? 'inline-block' : 'none')}">Permission Manage</a><br>
+    <a th:href="@{default/index}" th:style="'display:' + @{(${session.permissionList.contains('default')}? 'inline-block' : 'none')}">Default Page</a><br>
 </body>
 </html>

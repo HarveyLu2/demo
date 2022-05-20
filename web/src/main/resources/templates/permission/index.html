@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Permission index</title>
+</head>
+<body>
+
+<h2>Query All Role</h2>
+<form action="/permission/queryRoleAll" method = post>
+    <button  type ="submit">Query</button>
+</form>
+<table>
+    <tr>
+        <th>Role ID</th>
+        <th>Role Name</th>
+    </tr>
+    <tr th:each="rbacRole:${session.roleList}">
+        <td th:text="${rbacRole.roleId}"></td>
+        <td th:text="${rbacRole.roleName}"></td>
+    </tr>
+</table>
+<br><br>
+
+<h2>Query All Permissions</h2>
+<form action="/permission/queryPermissionAll" method = post>
+    <button  type ="submit">Query</button>
+</form>
+<table>
+    <tr>
+        <th>Permission ID</th>
+        <th>Permission Name</th>
+    </tr>
+    <tr th:each="rbacPermission:${session.permissionList}">
+        <td th:text="${rbacPermission.permissionId}"></td>
+        <td th:text="${rbacPermission.permissionName}"></td>
+    </tr>
+</table>
+<br><br>
+
+<h2>Check Permission</h2>
+<form action="/permission/queryPermission" method="post">
+    <label>Check ID:</label>
+    <input type="text" placeholder="Role ID" name = 'roleId'><br>
+    <input type="submit" value="Check">
+    <li th:each="permission:*{session.permissions}">
+        <input
+                type="checkbox"
+                name="permission"
+                th:value="${permission.permissionId}"
+                th:text="${permission.permissionName}"
+                th:checked="${session.rolePermission.contains(permission.permissionId)}"
+        />
+    </li>
+</form>
+<br><br>
+
+<h2>Assign Permission</h2>
+<form action="/permission/addRolePermission" method="post">
+    <label>Assign Role ID:</label>
+    <input type="text" placeholder="Role ID" name = 'roleId'><br>
+    <label>Role:</label>
+    <input type="text" placeholder="权限页之间用分号;分隔" name="assignPermission"><br>
+    <input type="submit" value="Assign"><br>
+    <span th:text="${session.addRolePermissionMsg}"></span>
+</form>
+<br><br>
+
+<h2>Add New Permission</h2>
+<form action="/permission/addPermissionPage" method="post">
+    <label>Permission page:</label>
+    <input type="text" placeholder="Permission ID" name = 'permissionId'><br>
+    <label>Permission Name:</label>
+    <input type="text" placeholder="Permission Name" name = 'permissionName'><br>
+    <input type="submit" value="Add">
+    <span th:text="${session.addPermissionMsg}"></span>
+</form>
+<br><br><br><br>
+
+<form action="/main" method = post>
+    <button type ="submit">Return main</button>
+</form>
+
+
+</body>
+</html>

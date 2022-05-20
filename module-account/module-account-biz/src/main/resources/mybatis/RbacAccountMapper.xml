@@ -1,43 +1,157 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.account.common.dal.mapper.RbacAccountMapper">
-    <resultMap type="com.account.common.dal.dao.RbacAccount" id="RbacAccountInfoMap">
-        <id column="account_id" jdbcType="INTEGER" property="id"/>
-        <id column="name" jdbcType="VARCHAR" property="name"/>
-        <id column="age" jdbcType="INTEGER" property="age"/>
+<mapper namespace="com.account.common.dal.mapper.RbacMapper">
+    <resultMap type="com.account.common.dal.dao.RbacUser" id="RbacUserInfoMap">
+        <id column="user_id" jdbcType="INTEGER" property="userId"/>
+        <id column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <id column="password_md5" jdbcType="VARCHAR" property="passwordMd5"/>
+        <id column="salt" jdbcType="VARCHAR" property="salt"/>
+        <id column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
+        <id column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified"/>
     </resultMap>
 
-    <resultMap type="com.account.common.dal.dao.RbacAccount" id="RbacPermissionMap">
-        <id column="account_id" jdbcType="INTEGER" property="id"/>
-        <id column="password" jdbcType="VARCHAR" property="password"/>
-        <id column="permission_id" jdbcType="VARCHAR" property="permission"/>
+    <resultMap type="com.account.common.dal.dao.RbacUserRole" id="RbacUserRoleInfoMap">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <id column="user_id" jdbcType="INTEGER" property="userId"/>
+        <id column="role_id" jdbcType="INTEGER" property="roleId"/>
+        <id column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
+        <id column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified"/>
     </resultMap>
 
-    <!--id与对应中的Mapper接口文件中的方法名相同-->
-    <select id="selectById" resultMap="RbacAccountInfoMap">
-        select account_id, name, age from account where id = #{id}
+    <resultMap type="com.account.common.dal.dao.RbacRole" id="RbacRoleInfoMap">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <id column="role_id" jdbcType="INTEGER" property="roleId"/>
+        <id column="role_name" jdbcType="VARCHAR" property="roleName"/>
+        <id column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
+        <id column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified"/>
+    </resultMap>
+
+    <resultMap type="com.account.common.dal.dao.RbacPermission" id="RbacPermissionInfoMap">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <id column="permission_id" jdbcType="INTEGER" property="permissionId"/>
+        <id column="permission_name" jdbcType="VARCHAR" property="permissionName"/>
+        <id column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
+        <id column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified"/>
+    </resultMap>
+
+    <resultMap type="com.account.common.dal.dao.RbacRolePermission" id="RbacRolePermissionInfoMap">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <id column="role_id" jdbcType="INTEGER" property="roleId"/>
+        <id column="permission_id" jdbcType="INTEGER" property="permissionId"/>
+        <id column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
+        <id column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified"/>
+    </resultMap>
+
+    <select id="getUserByName" resultMap="RbacUserInfoMap">
+        select * from user_table where user_name = #{name}
     </select>
 
-    <select id="selectByName" resultMap="RbacPermissionMap">
-        select a.account_id, a.password, c.permission_id
-        from account_table a
-        left join account_role_table b
-        on a.account_id=b.account_id
-        left join role_permission_table c
-        on b.role_id=c.role_id
-        where a.name = #{name};
+    <select id="getUserById" resultMap="RbacUserInfoMap">
+        select * from user_table where user_id = #{id}
     </select>
 
-    <insert id="insertAccount" parameterType="com.account.common.dal.dao.RbacAccount" useGeneratedKeys="true" keyProperty="id" keyColumn="account_id">
+<!--    <select id="selectByName" resultMap="RbacPermissionMap">-->
+<!--        select a.account_id, a.password, c.permission_id-->
+<!--        from account_table a-->
+<!--        left join account_role_table b-->
+<!--        on a.account_id=b.account_id-->
+<!--        left join role_permission_table c-->
+<!--        on b.role_id=c.role_id-->
+<!--        where a.name = #{name};-->
+<!--    </select>-->
+
+    <insert id="insertUser" parameterType="com.account.common.dal.dao.RbacUser">
         insert into
-        account_table (name, age, password)
-        values(#{name}, #{age}, #{password});
+        user_table (user_id, user_name, password_md5, salt, gmt_create, gmt_modified)
+        values (#{userId}, #{userName}, #{passwordMd5}, #{salt}, #{gmtCreate}, #{gmtModified})
     </insert>
+<!--    -->
+<!--    <insert id="insertRole" parameterType="com.account.common.dal.dao.RbacAccount">-->
+<!--        insert into account_role_table-->
+<!--        (account_id, role_id)-->
+<!--        values(#{id}, #{roleId});-->
+<!--    </insert>-->
+
+    <update id="updateUserById" parameterType="com.account.common.dal.dao.RbacUser">
+        update user_table set
+            user_name=#{userName},
+            password_md5=#{passwordMd5},
+            salt=#{salt},
+            gmt_modified=#{gmtModified}
+        where user_id=#{userId}
+    </update>
+
+    <select id="queryUserAll" resultMap="RbacUserInfoMap">
+        select * from user_table
+    </select>
     
-    <insert id="insertRole" parameterType="com.account.common.dal.dao.RbacAccount">
-        insert into account_role_table
-        (account_id, role_id)
-        values(#{id}, #{roleId});
+    <select id="queryRoleAll" resultMap="RbacRoleInfoMap">
+        select * from role_table
+    </select>
+
+    <select id="queryPermissionAll" resultMap="RbacPermissionInfoMap">
+        select * from permission_table
+    </select>
+
+    <select id="getRoleByUserId" resultMap="RbacUserRoleInfoMap">
+        select * from user_role_table
+        where user_id=#{userId}
+    </select>
+
+    <insert id="addRole" parameterType="com.account.common.dal.dao.RbacRole">
+        insert into
+        role_table (role_id, role_name, gmt_create, gmt_modified)
+        values (#{roleId}, #{roleName}, #{gmtCreate}, #{gmtModified})
     </insert>
+
+    <insert id="insertUserRole" parameterType="com.account.common.dal.dao.RbacUserRole">
+        insert into
+        user_role_table (user_id, role_id, gmt_create, gmt_modified)
+        values (#{userId}, #{roleId}, #{gmtCreate}, #{gmtModified})
+    </insert>
+
+    <select id="getRoleIdByRoleName" resultType="Integer">
+        select role_id from role_table where role_name=#{roleName}
+    </select>
+
+    <insert id="insertPermission" parameterType="com.account.common.dal.dao.RbacPermission">
+        insert into
+        permission_table (id, permission_id, permission_name, gmt_create, gmt_modified)
+        values (#{id}, #{permissionId}, #{permissionName}, #{gmtCreate}, #{gmtModified})
+    </insert>
+
+    <select id="getPermissionIdByPermissionName" resultType="Integer">
+        select permission_id from permission_table where permission_name=#{permissionName}
+    </select>
+
+    <insert id="insertRolePermission" parameterType="com.account.common.dal.dao.RbacRolePermission">
+        insert into
+        role_permission_table (role_id, permission_id, gmt_create, gmt_modified)
+        values (#{roleId}, #{permissionId}, #{gmtCreate}, #{gmtModified})
+    </insert>
+
+    <select id="getPermissionIdByRoleId" resultMap="RbacRolePermissionInfoMap">
+        select * from role_permission_table
+        where role_id=#{roleId}
+    </select>
+
+    <select id="getPermissionNameByUserId" resultType="String">
+        select distinct permission_name from permission_table
+            where permission_id in
+            (select permission_id from role_permission_table
+                where role_id in
+                (select role_id from user_role_table
+                    where user_id=#{userId}));
+    </select>
+
+    <delete id="deleteUserByUserId" parameterType="Integer">
+        delete from user_table where user_id=#{userId}
+    </delete>
+
+    <delete id="deleteUserRoleByUserId" parameterType="Integer">
+        delete from user_role_table where user_id=#{userId}
+    </delete>
+
+
 
 </mapper>

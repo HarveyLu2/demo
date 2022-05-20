@@ -5,20 +5,24 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+/**
+ * 配置页面访问拦截器
+ * @author Harvey Lu
+ * @date 2022/05/18
+ */
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry){
         registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**")
-                .excludePathPatterns("/", "/login","/main","/register","/toRegister","/toLogin");
+                .excludePathPatterns("/", "/login","/toLogin","/main");
     }
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry){
         registry.addViewController("/main").setViewName("main");
         registry.addViewController("/login").setViewName("login");
-        registry.addViewController("/register").setViewName("register");
 
     }
 }

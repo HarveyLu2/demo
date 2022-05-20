@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>User index</title>
+</head>
+<body>
+<form action="/user/queryUserAll" method = post>
+    <button type ="submit">Query All</button>
+</form>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+    </tr>
+    <tr th:each="rbacUser:${session.userList}">
+        <td th:text="${rbacUser.userId}"></td>
+        <td th:text="${rbacUser.userName}"></td>
+    </tr>
+    <br><br>
+</table>
+<h2>Add User</h2>
+<form action="addUser" method = post>
+    <label>Account Name:</label>
+    <input type="text" placeholder="Account Name" name = 'userName'><br><br>
+    <label>Password:</label>
+    <input type="text" placeholder="Password" name = 'password'><br><br>
+    <label>ID:</label>
+    <input type="text" placeholder="ID" name = "userId"><br><br>
+
+    <input type ="submit" value = "Add"><br>
+    <span th:text="${session.addUserMsg}"></span>
+</form>
+<br><br>
+<h2>Modify User</h2>
+<form action="updateUser" method = post>
+    <label>ID:</label>
+    <input type="text" placeholder="ID" name = "userId"><br><br>
+    <label>New Name:</label>
+    <input type="text" placeholder="New Name" name = 'userName'><br><br>
+    <label>New Password:</label>
+    <input type="text" placeholder="New Password" name = 'newPassword'><br><br>
+    <input type ="submit" value = "Modify"><br>
+    <span th:text="${session.updateUserMsg}"></span>
+</form>
+<br><br>
+<h2>Delete User</h2>
+<form action="deleteUser" method = post>
+    <label>ID:</label>
+    <input type="text" placeholder="ID" name = "userId"><br><br>
+    <input type ="submit" value = "Delete"><br>
+    <span th:text="${session.deleteUserMsg}"></span>
+</form>
+<br><br><br><br>
+
+<form action="/main" method = post>
+    <button type ="submit">Return main</button>
+</form>
+
+</body>
+</html>
