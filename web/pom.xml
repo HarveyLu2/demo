@@ -37,6 +37,11 @@
             <artifactId>runtime-sofa-boot-starter</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
         <!-- mq -->
         <dependency>
             <groupId>org.apache.rocketmq</groupId>
@@ -89,24 +94,46 @@
     </dependencies>
 
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
+            <plugins>
+                <!-- http://docs.spring.io/spring-boot/docs/current/maven-plugin/usage.html -->
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <!-- http://docs.spring.io/spring-boot/docs/current/maven-plugin/usage.html -->
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>1.4.2.RELEASE</version>
+                    <configuration>
+                        <!-- fat jar output directory -->
+                        <outputDirectory>../target</outputDirectory>
+                        <classifier>executable</classifier>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
 
-                <configuration>
-                    <includeSystemScope>true</includeSystemScope>
-                    <mainClass>com.stori.sofa.WebApplication</mainClass>
-                </configuration>
-            </plugin>
-        </plugins>
+<!--        <plugins>-->
+<!--            <plugin>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <phase>package</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>repackage</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+
+<!--                <configuration>-->
+<!--                    <includeSystemScope>true</includeSystemScope>-->
+<!--                    <mainClass>com.stori.sofa.WebApplication</mainClass>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+<!--        </plugins>-->
     </build>
 </project>

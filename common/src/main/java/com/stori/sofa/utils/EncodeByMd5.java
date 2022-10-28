@@ -1,18 +1,12 @@
 package com.stori.sofa.utils;
 
-import javafx.scene.input.DataFormat;
-
-import javax.sound.midi.Soundbank;
 import java.math.BigInteger;
 import java.security.MessageDigest;
-import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Random;
 
 /**
  * 用于密码加盐加密
+ *
  * @author Harvey Lu
  */
 public class EncodeByMd5 {
@@ -21,7 +15,7 @@ public class EncodeByMd5 {
 
     /**
      * 随机生成16位salt
-     * */
+     */
     public String salt() {
         Random random = new Random();
         StringBuilder saltString = new StringBuilder(16);
@@ -33,6 +27,7 @@ public class EncodeByMd5 {
 
     /**
      * 对字符串进行32位MD5加密
+     *
      * @param str 待加密字符串
      * @return 加密后字符串，字母大写，共32位
      */
@@ -40,21 +35,22 @@ public class EncodeByMd5 {
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("MD5");
             messageDigest.update(str.getBytes("UTF-8"));
-            String md5=new BigInteger(1, messageDigest.digest()).toString(16);
+            String md5 = new BigInteger(1, messageDigest.digest()).toString(16);
             return fillMd5(md5);
         } catch (Exception e) {
-            throw new RuntimeException("Encode failed:"+e.getMessage(),e);
+            throw new RuntimeException("Encode failed:" + e.getMessage(), e);
         }
     }
 
     /**
      * 字符串字符数不够32，高位补0
+     *
      * @param md5
      * @return 32个字符的字符串
-     * */
-    private static String fillMd5(String md5){
+     */
+    private static String fillMd5(String md5) {
 
-        return md5.length()==32?md5:fillMd5("0"+md5);
+        return md5.length() == 32 ? md5 : fillMd5("0" + md5);
     }
 
 }

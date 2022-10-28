@@ -1,5 +1,7 @@
 package com.stori.sofa.controller;
 
+import com.stori.sofa.base.BaseTest;
+import com.stori.sofa.model.Result;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,9 +11,6 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-
-import com.stori.sofa.base.BaseTest;
-import com.stori.sofa.model.Result;
 
 /**
  * 测试用例

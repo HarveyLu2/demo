@@ -1,6 +1,8 @@
 package com.stori.sofa.controller;
 
-import com.account.common.dal.dao.*;
+import com.account.common.dal.dao.RbacPermission;
+import com.account.common.dal.dao.RbacRole;
+import com.account.common.dal.dao.RbacRolePermission;
 import com.account.common.facade.RbacAccountInternalFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

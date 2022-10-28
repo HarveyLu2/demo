@@ -4,11 +4,19 @@ import com.account.common.dal.dao.RbacUser;
 import com.account.common.facade.RbacAccountInternalFacade;
 import com.stori.sofa.utils.EncodeByMd5;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.server.Session;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.HashSet;
+import java.util.ResourceBundle;
 
 /**
  *
@@ -70,6 +78,27 @@ public class RbacLoginController {
     @RequestMapping("/default/index")
     public String toDefaultIndex(HttpSession session){
         return "/default/index";
+    }
+
+    @RequestMapping("/test/cookies")
+    @ResponseBody
+    public String testCookies(HttpSession session, HttpServletResponse response){
+        response.setContentType("text/html;charset=UTF-8");
+        Cookie cookie = new Cookie("username", "hhh");
+        response.addCookie(cookie);
+        return "testCookies";
+    }
+
+    @RequestMapping("/test/readcookies")
+    @ResponseBody
+    public String readCookies(HttpSession session, HttpServletRequest request, HttpServletResponse response){
+
+        System.out.println(request.getRequestedSessionId());
+        Cookie[] cookies = request.getCookies();
+        for (Cookie each:cookies) {
+            System.out.println(each.getName() + " " + each.getValue());
+        }
+        return request.getRequestedSessionId();
     }
 
 }

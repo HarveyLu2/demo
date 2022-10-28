@@ -1,19 +1,18 @@
 package com.stori.sofa.controller;
 
-import java.io.IOException;
-
 import com.bill.common.dal.dao.Student;
+import com.bill.common.facade.BillInternalFacade;
 import com.bill.common.facade.StudentInternalFacade;
+import com.stori.sofa.model.Result;
+import io.micrometer.core.instrument.MeterRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import com.bill.common.facade.BillInternalFacade;
-import com.stori.sofa.model.Result;
-
-import io.micrometer.core.instrument.MeterRegistry;
+import java.io.IOException;
 
 /**
  * module test controller

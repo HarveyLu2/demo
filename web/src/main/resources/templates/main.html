@@ -13,5 +13,13 @@
     <a th:href="@{role/index}" th:style="'display:' + @{(${session.permissionList.contains('role')}? 'inline-block' : 'none')}">Role Manage</a><br>
     <a th:href="@{permission/index}" th:style="'display:' + @{(${session.permissionList.contains('permission')}? 'inline-block' : 'none')}">Permission Manage</a><br>
     <a th:href="@{default/index}" th:style="'display:' + @{(${session.permissionList.contains('default')}? 'inline-block' : 'none')}">Default Page</a><br>
+    <a href="http://k8s-default-nacosser-349c7af5d9-fbbb76f615085720.elb.us-west-2.amazonaws.com:8848/nacos/">nacos</a>
+    <form action="toLogin" method = post>
+        <label>Account Name:</label>
+        <input type="text" placeholder="Account Name" name = 'userName'><br>
+        <label>Password:</label>
+        <input type="text" placeholder="Password" name = 'userPassword'><br>
+        <input type ="submit" value = "Login">
+    </form>
 </body>
 </html>
