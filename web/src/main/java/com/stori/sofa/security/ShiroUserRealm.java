@@ -40,4 +40,6 @@ public class ShiroUserRealm extends AuthorizingRealm {
 
         return new SimpleAuthenticationInfo(userName, userInfoDTO.getUserPassword(), getName());
     }
+
+
 }
