@@ -15,12 +15,12 @@
 </head>
 <body>
     <h2>Please sign in</h2>
-        <form action="toLogin" method = post>
+        <form action="/doLogin" method=post>
             <label>Account Name:</label>
-            <input type="text" placeholder="Account Name" name = 'userName'><br>
+            <input name='userName' placeholder="Account Name" type="text"><br>
             <label>Password:</label>
-            <input type="text" placeholder="Password" name = 'userPassword'><br>
-            <input type ="submit" value = "Login">
+            <input name='userPassword' placeholder="Password" type="text"><br>
+            <input type="submit" value="Login">
         </form>
 </body>
 </html>
