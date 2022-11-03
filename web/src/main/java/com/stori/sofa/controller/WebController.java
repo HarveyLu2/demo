@@ -9,6 +9,7 @@ import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationException;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -25,6 +26,7 @@ public class WebController {
 
     @ResponseBody
     @GetMapping("hello")
+    @RequiresPermissions("sys:user:edit")
     public String hello() {
         return "hello";
     }

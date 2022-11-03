@@ -5,6 +5,7 @@ package com.stori.sofa.security;
 
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,9 @@ import org.springframework.stereotype.Service;
 
 import com.stori.sofa.model.UserInfoDTO;
 import com.stori.sofa.service.UserService;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author Harvey Lu
@@ -25,7 +29,11 @@ public class ShiroUserRealm extends AuthorizingRealm {
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        return null;
+        String userName = (String)principalCollection.getPrimaryPrincipal();
+        Set<String> permissions = userService.getPermissionsByUserName(userName);
+        SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
+        authorizationInfo.setStringPermissions(permissions);
+        return authorizationInfo;
     }
 
     @Override
