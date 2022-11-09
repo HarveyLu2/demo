@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <style>
+        label{
+            width:150px;
+            display:inline-block;
+            text-align:right;
+            padding_right:5px;
+
+        }
+    </style>
+    <meta name="google-signin-client_id" content="32756697243-spd97p9kbgegpef00b8u8nn9r63tm27t.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+</head>
+<body>
+    <h2>Please sign in</h2>
+        <form action="/sso/doLogin" method=post>
+            <label>Account Name:</label>
+            <input name='userName' placeholder="Account Name" type="text"><br>
+            <label>Password:</label>
+            <input name='userPassword' placeholder="Password" type="text"><br>
+            <input type="submit" value="Login">
+        </form>
+
+    <form action="/sso/googleIndex" method=post>
+        <input type="submit" value="Google Login">
+    </form>
+
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <script>
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+            console.log('Name: ' + profile.getName());
+            console.log('Image URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        }
+    </script>
+
+</body>
+</html>

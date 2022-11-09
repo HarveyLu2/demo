@@ -26,24 +26,24 @@ public class WebController {
 
     @ResponseBody
     @GetMapping("hello")
-    @RequiresPermissions("sys:user:edit")
+//    @RequiresPermissions("sys:user:edit")
     public String hello() {
         return "hello";
     }
 
-    @RequestMapping("toLogin")
-    public String login() {
-        return "login";
-    }
-
-    @ResponseBody
-    @RequestMapping("doLogin")
-    public String doLogin(String userName, String userPassword) {
-        Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken(userName, userPassword);
-        subject.login(token);
-        return "login success";
-    }
+//    @RequestMapping("toLogin")
+//    public String login() {
+//        return "login";
+//    }
+//
+//    @ResponseBody
+//    @RequestMapping("doLogin")
+//    public String doLogin(String userName, String userPassword) {
+//        Subject subject = SecurityUtils.getSubject();
+//        UsernamePasswordToken token = new UsernamePasswordToken(userName, userPassword);
+//        subject.login(token);
+//        return "login success";
+//    }
 
     @ExceptionHandler({ShiroException.class})
     @ResponseBody

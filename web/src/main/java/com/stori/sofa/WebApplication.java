@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
  * @date 2022/05/06 19:55
  **/
 @Component
-@SpringBootApplication(scanBasePackages = {"com.stori.sofa", "com.account", "com.bill"},
+@SpringBootApplication(scanBasePackages = {"com.stori.sofa", "com.account", "com.bill", "com.stori.security", "com.stori.sso"},
     exclude = {RocketMQAutoConfiguration.class})
 public class WebApplication {
 

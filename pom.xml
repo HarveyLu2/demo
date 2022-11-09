@@ -105,5 +105,7 @@
         <module>common</module>
         <module>module-account</module>
         <module>module-bill</module>
+        <module>security</module>
+        <module>sso</module>
     </modules>
 </project>
